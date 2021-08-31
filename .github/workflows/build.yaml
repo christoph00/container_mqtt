@@ -1,9 +1,14 @@
 name: Build and Publish Image
 
 on:
+  schedule:
+    - cron: '39 10 * * *'
   push:
-    tags:
-      - '*'
+    branches: [ main ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   publish:
